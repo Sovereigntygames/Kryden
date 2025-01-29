@@ -1,0 +1,37 @@
+<div id="chat-container">
+    <h2>Chat with the Bot</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="userInput" placeholder="Type a message..." />
+    <button onclick="chatbotResponse()">Send</button>
+</div>
+
+<style>
+    #chat-container { width: 300px; margin: auto; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; text-align: center; }
+    #chat-box { height: 200px; overflow-y: auto; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+    input { width: 80%; padding: 5px; margin-top: 10px; }
+    button { padding: 5px 10px; }
+</style>
+
+<script>
+    function chatbotResponse() {
+        var userText = document.getElementById("userInput").value;
+        var chatBox = document.getElementById("chat-box");
+
+        if (userText.trim() === "") return;
+
+        var botReply = "I'm a simple chatbot. Ask me anything!";
+        if (userText.toLowerCase().includes("hello")) {
+            botReply = "Hello! How can I help you?";
+        } else if (userText.toLowerCase().includes("how are you")) {
+            botReply = "I'm just a bot, but I'm here to chat!";
+        } else if (userText.toLowerCase().includes("bye")) {
+            botReply = "Goodbye! Have a great day!";
+        }
+
+        chatBox.innerHTML += `<p><strong>User:</strong> ${userText}</p>`;
+        chatBox.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
+
+        document.getElementById("userInput").value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
